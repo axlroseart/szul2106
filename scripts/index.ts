@@ -8,12 +8,11 @@ class Singleton {
     this.y = 2;
     this.color = color;
   }
-  static getInstance(params:any) {
-    let instance = Singleton.instance;
-    if (!instance) {
-      instance = new Singleton(params);
+  public static getInstance(params:any) {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton(params);
     }
-    return instance;
+    return Singleton.instance;
   }
   getColor() {
     return this.color;
@@ -21,4 +20,9 @@ class Singleton {
 }
 
 const a = Singleton.getInstance('black');
-console.log(a.getColor());
+const b = Singleton.getInstance('red');
+
+console.log('==> color a:', a.getColor());
+console.log('==> color b:', b.getColor());
+
+console.log('==> is same instance:', a === b);
